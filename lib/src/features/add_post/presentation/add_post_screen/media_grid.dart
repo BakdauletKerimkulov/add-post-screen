@@ -1,5 +1,5 @@
-import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/add_post_screen_new.dart';
-import 'package:add_post_app/src/features/add_post/presentation/media_controller.dart';
+import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/media_controller.dart';
+import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/thumnail_item.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

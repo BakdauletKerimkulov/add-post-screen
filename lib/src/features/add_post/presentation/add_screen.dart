@@ -1,5 +1,5 @@
-import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/add_post_screen_new.dart';
-import 'package:add_post_app/src/features/add_post/presentation/add_reels_screen.dart';
+import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/add_post_screen.dart';
+import 'package:add_post_app/src/features/add_post/presentation/add_reels_screen/add_reels_screen.dart';
 import 'package:flutter/material.dart';
 
 class AddScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _AddScreenState extends State<AddScreen> {
             PageView(
               controller: pageController,
               onPageChanged: onPageChanged,
-              children: [AddPostScreenNew2(), AddReelsScreen()],
+              children: [AddPostScreen(), AddReelsScreen()],
             ),
 
             AnimatedPositioned(
