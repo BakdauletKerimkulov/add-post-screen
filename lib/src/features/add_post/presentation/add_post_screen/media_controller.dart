@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:add_post_app/src/features/add_post/app/media_service.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -67,13 +65,6 @@ class AssetController extends _$AssetController {
     ref.read(currentAlbumProvider.notifier).set(album);
     await loadMore(reset: true);
   }
-}
-
-//* Выдаёт файл текущего выбранного ассета
-@riverpod
-Future<File?> currentFile(Ref ref) async {
-  final currentAsset = ref.watch(choosenAssetProvider);
-  return currentAsset?.file;
 }
 
 //* Хранит выбранный пользователем ассет

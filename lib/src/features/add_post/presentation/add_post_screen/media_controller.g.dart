@@ -165,39 +165,6 @@ abstract class _$AssetController extends $AsyncNotifier<List<AssetEntity>> {
   }
 }
 
-@ProviderFor(currentFile)
-const currentFileProvider = CurrentFileProvider._();
-
-final class CurrentFileProvider
-    extends $FunctionalProvider<AsyncValue<File?>, File?, FutureOr<File?>>
-    with $FutureModifier<File?>, $FutureProvider<File?> {
-  const CurrentFileProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'currentFileProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$currentFileHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<File?> $createElement($ProviderPointer pointer) =>
-      $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<File?> create(Ref ref) {
-    return currentFile(ref);
-  }
-}
-
-String _$currentFileHash() => r'cc35b1881309f3d3af298576b1eda747077155a7';
-
 @ProviderFor(ChoosenAsset)
 const choosenAssetProvider = ChoosenAssetProvider._();
 

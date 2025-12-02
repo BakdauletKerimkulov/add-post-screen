@@ -1,5 +1,5 @@
 import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/media_controller.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -21,6 +21,15 @@ class ThumbnailItem extends ConsumerWidget {
                 Positioned.fill(
                   child: Image.memory(snapshot.data!, fit: BoxFit.cover),
                 ),
+
+                if (asset.type == AssetType.video)
+                  Align(
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: Colors.white.withAlpha(80),
+                    ),
+                  ),
               ],
             );
           }

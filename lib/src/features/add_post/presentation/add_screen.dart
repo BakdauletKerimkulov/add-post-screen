@@ -1,17 +1,19 @@
 import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/add_post_screen.dart';
 import 'package:add_post_app/src/features/add_post/presentation/add_reels_screen/add_reels_screen.dart';
+import 'package:add_post_app/src/features/add_post/presentation/add_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddScreen extends StatefulWidget {
+class AddScreen extends ConsumerStatefulWidget {
   const AddScreen({super.key});
 
   @override
-  State<AddScreen> createState() => _AddScreenState();
+  ConsumerState<AddScreen> createState() => _AddScreenState();
 }
 
 int _currentPage = 0;
 
-class _AddScreenState extends State<AddScreen> {
+class _AddScreenState extends ConsumerState<AddScreen> {
   late PageController pageController;
 
   @override
@@ -30,6 +32,7 @@ class _AddScreenState extends State<AddScreen> {
     setState(() {
       _currentPage = page;
     });
+    ref.read(addScreenControllerProvider.notifier).changePage(page);
   }
 
   void navigationTapped(int page) {

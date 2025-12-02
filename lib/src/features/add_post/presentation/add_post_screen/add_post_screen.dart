@@ -7,18 +7,13 @@ class AddPostScreen extends ConsumerStatefulWidget {
   const AddPostScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _AddPostScreenNew2State();
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddPostScreenState();
 }
 
-class _AddPostScreenNew2State extends ConsumerState<AddPostScreen>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
+class _AddPostScreenState extends ConsumerState<AddPostScreen> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
+    //super.build(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -38,7 +33,7 @@ class _AddPostScreenNew2State extends ConsumerState<AddPostScreen>
         child: SingleChildScrollView(
           child: Column(
             children: [
-              CurrentFile(),
+              CurrentFileItem(),
 
               SizedBox(
                 width: double.infinity,
