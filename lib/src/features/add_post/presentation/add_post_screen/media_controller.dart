@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:add_post_app/src/features/add_post/app/media_service.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:video_player/video_player.dart';
 
 part 'media_controller.g.dart';
 
@@ -74,4 +77,22 @@ class ChoosenAsset extends _$ChoosenAsset {
   AssetEntity? build() => null;
 
   void select(AssetEntity asset) => state = asset;
+}
+
+//* Управление контроллером
+@riverpod
+FutureOr<VideoPlayerController> videoController(Ref ref, File file) async {
+  final controller = VideoPlayerController.file(file);
+  await controller.initialize();
+  controller
+    ..setLooping(true)
+    ..play();
+
+  ref.onDispose(() {
+    controller
+      ..pause()
+      ..dispose();
+  });
+
+  return controller;
 }

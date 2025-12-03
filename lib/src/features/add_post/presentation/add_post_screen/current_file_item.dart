@@ -5,11 +5,8 @@ import 'package:add_post_app/src/features/add_post/presentation/add_post_screen/
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
-part 'current_file_item.g.dart';
 
 class CurrentFileItem extends ConsumerWidget {
   const CurrentFileItem({super.key});
@@ -82,15 +79,15 @@ class CurrentFileVideoPlayer extends ConsumerWidget {
             builder: (context, value, child) {
               return Stack(
                 children: [
-                  Positioned.fill(
-                    child: GestureDetector(
-                      onTap: () {
-                        if (controller.value.isPlaying) {
-                          controller.pause();
-                        } else {
-                          controller.play();
-                        }
-                      },
+                  GestureDetector(
+                    onTap: () {
+                      if (controller.value.isPlaying) {
+                        controller.pause();
+                      } else {
+                        controller.play();
+                      }
+                    },
+                    child: Center(
                       child: AspectRatio(
                         aspectRatio: controller.value.aspectRatio,
                         child: VideoPlayer(controller),
@@ -100,10 +97,13 @@ class CurrentFileVideoPlayer extends ConsumerWidget {
                   if (!controller.value.isPlaying)
                     Align(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.play_arrow,
-                        color: Colors.white.withAlpha(80),
-                        size: 72,
+                      child: GestureDetector(
+                        onTap: () => controller.play(),
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white.withAlpha(80),
+                          size: 72,
+                        ),
                       ),
                     ),
                 ],
@@ -117,21 +117,4 @@ class CurrentFileVideoPlayer extends ConsumerWidget {
           Center(child: Text('Ошибка загрузки видео\n${e.toString()}')),
     );
   }
-}
-
-@riverpod
-FutureOr<VideoPlayerController> videoController(Ref ref, File file) async {
-  final controller = VideoPlayerController.file(file);
-  await controller.initialize();
-  controller
-    ..setLooping(true)
-    ..play();
-
-  ref.onDispose(() {
-    controller
-      ..pause()
-      ..dispose();
-  });
-
-  return controller;
 }
